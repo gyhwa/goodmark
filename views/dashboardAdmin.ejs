@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+    <h1> Welcome to your bookmarks </h1>
+    <h3>Create Collection <a href="/collection/create">+</a></h3>
+
+    <% collections.forEach(function(collection){ %>
+      <div>
+        <h5 contenteditable="true" id=<%= collection._id %>> <%= collection.name %> </h5>
+        <form action="/collection/delete" method="post">
+            <input type="checkbox" onChange="this.form.submit()" name="deleteCollection" value=<%= collection._id %>>
+        </form>
+        <p>Add Item <a href=<%="/collection/"+ collection._id  + "/add"%>>+</a></p>
+      </div>
+      <table>
+        <tr>
+          <th> Name </th>
+          <th> Notes </th>
+          <th> Edit </th>
+          <th> Delete </th>
+        </tr>
+
+      <% collection.items.forEach(function(item){ %>
+        <tr>
+          <td> <a href=<%= item.url %>><%= item.name %></a> </td>
+          <td> <%= item.notes %> </td>
+          <th> Coming Soon </th>
+          <th>
+            <form action=<%= "/collection/"+collection._id+"/delete" %> method="post">
+              <input type="checkbox" onChange="this.form.submit()" name="deleteItem" value=<%= item._id %>>
+            </form>
+        </th>
+        </tr>
+
+      <!-- Need to list items -->
+      <% }) %>
+      </table>
+    <% }) %>
+
+
+
+    <%- include('partials/footer') %>

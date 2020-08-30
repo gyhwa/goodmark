@@ -32,8 +32,9 @@ app.use(session({
   }
 }));
 app.use(flash());
-
-mongoose.connect("mongodb://localhost:27017/bookmarkDB", {useNewUrlParser: true,useUnifiedTopology: true});
+const connectionstring = "mongodb+srv://admin-gina:"+process.env.MONGOURI+"@cluster0.zwkcj.mongodb.net/bookmarkDB?retryWrites=true&w=majority";
+mongoose.connect(connectionstring, {useNewUrlParser: true,useUnifiedTopology: true});
+//mongoose.connect("mongodb://localhost:27017/bookmarkDB", {useNewUrlParser: true,useUnifiedTopology: true});
 mongoose.set("useCreateIndex", true);
 
 

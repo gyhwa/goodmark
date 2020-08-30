@@ -66,7 +66,7 @@ router.get("/", function(req,res) {
 });
 
 router.get("/register", function(req,res){
-  res.render("register", {message:""})
+  res.render("auth/register", {message:""})
 });
 
 
@@ -75,7 +75,7 @@ router.get('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return done(err);}
     if (!user) {
-      return res.render('login', { message: message });
+      return res.render('auth/login', { message: message });
     }
   })(req, res, next);
 });
@@ -94,12 +94,12 @@ router.post("/register", function(req, res) {
   }
   User.findOne({ email: req.body.email }).then(user => {
       if (user) {
-        res.render("register", {message: "Email already exists"})
+        res.render("auth/register", {message: "Email already exists"})
         //return res.status(400).json({ email: "Email already exists" });
       } else {
         User.findOne({ username: req.body.name }).then(user =>{
           if (user) {
-            res.render("register", {message: "Username already exists"})
+            res.render("auth/register", {message: "Username already exists"})
           } else {
             // Successful registration
             const newUser = new User({

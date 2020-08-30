@@ -16,12 +16,12 @@ Item = mongoose.model('Item', ItemSchema);
 mongoose.set('useFindAndModify', false);
 
 router.get("/create", function(req, res){
-  res.render("createCollection");
+  res.render("collection/createCollection");
 })
 
 router.get("/:collection/add", function(req, res){
   const requestedCollection = req.params.collection;
-  res.render("createItem", {requestedCollection: requestedCollection});
+  res.render("collection/createItem", {requestedCollection: requestedCollection});
 })
 /////////////////////
 

@@ -8,19 +8,30 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const _ = require("lodash");
 
 
-
 router.get("/:username", ensureAuthenticated, function(req,res){
   const requestedUser = _.lowerCase(req.params.username);
   const currentUser = _.lowerCase(req.user.username);
   if (requestedUser == currentUser) {
     //render indexAdmin
-    res.render("dashboardAdmin", {user: req.user.username, collections: req.user.group});
+    res.render("dashboard/dashboardUser", {user: req.user.username, collections: req.user.group, isUser: true});
   } else {
-    res.render("dashboardGuest", {user: requestedUser});
+    User.findOne({username: requestedUser}, function(err, foundUser){
+      if (err) {
+        console.log(err)
+      } else {
+        const collections = foundUser.group;
+        res.render("dashboard/dashboardUser", {user: requestedUser, collections: collections, isUser: false});
+      }
+    });
   }
 })
 
-
+router.get("/", function(req,res) {
+  User.find({}, function(err, users){
+    
+  })
+  res.render("dashboard/dashboard")
+})
 
 ////////////////
 

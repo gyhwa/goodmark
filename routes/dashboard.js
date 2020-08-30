@@ -26,9 +26,13 @@ router.get("/:username", ensureAuthenticated, function(req,res){
   }
 })
 
+//// TODO:
+// look into reduce
+// apply .sort to array
+// filter out specific users
 router.get("/", function(req,res) {
   User.find({}, function(err, users){
-    
+    console.log("todo")
   })
   res.render("dashboard/dashboard")
 })

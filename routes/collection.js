@@ -15,8 +15,8 @@ Item = mongoose.model('Item', ItemSchema);
 
 mongoose.set('useFindAndModify', false);
 
-router.get("/create", function(req, res){
-  res.render("collection/createCollection");
+router.get("/create", ensureAuthenticated, function(req, res){
+  res.render("collection/createCollection", {user: req.user.username});
 })
 
 router.get("/:collection/add", function(req, res){
@@ -88,13 +88,13 @@ router.post("/:collection/add", ensureAuthenticated, function(req, res){
   }
 })
 
-//TODO
+
 router.post("/:collection/delete", ensureAuthenticated, function(req, res){
   const collection = req.params.collection
   const deleteItem = req.body.deleteItem;
   const username = req.user.username;
-
-  User.findOneAndUpdate({username: username}, {$pull: {group: {items: {_id: deleteItem}}}},function(err, foundUser){
+  console.log(deleteItem);
+  User.findOneAndUpdate({"group.items._id": deleteItem}, { $pull: {"group.$.items": {_id:deleteItem}}},function(err, foundUser){
     if (err) {
       console.log(err);
     } else {
@@ -109,7 +109,7 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated())
         return next();
     else{
-        res.redirect('/login')
+        res.redirect('/login');
     }
 }
 module.exports = router;

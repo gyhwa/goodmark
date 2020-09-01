@@ -32,10 +32,16 @@ router.get("/:username", ensureAuthenticated, function(req,res){
 // filter out specific users
 router.get("/", function(req,res) {
   User.find({}, function(err, users){
-    console.log("todo")
-  })
-  res.render("dashboard/dashboard")
-})
+    if (err) {
+      console.log(err);
+    }
+    else {
+      const result = users.map(user => user.username);
+      console.log(result);
+      res.render("dashboard/dashboard", {usernames: result});
+    }
+  });
+});
 
 ////////////////
 

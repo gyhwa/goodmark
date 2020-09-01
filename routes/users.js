@@ -53,16 +53,19 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-
-
-//////////////////////////////////// GET ///////////////////////////////////
 router.use(function(req, res, next) {
     res.locals.loggedin = req.user || null;
     next();
 });
 
+
+//////////////////////////////////// GET ///////////////////////////////////
 router.get("/", function(req,res) {
   res.render("home")
+});
+
+router.get("/about", function(req,res) {
+  res.render("about")
 });
 
 router.get("/register", function(req,res){

@@ -54,8 +54,8 @@ router.post("/delete", function(req, res){
 });
 
 router.post("/update", function(req,res) {
-  console.log(req.body.collectionId)
-  console.log(document.getElementById(req.body.collectionId).innerHTML)
+  console.log(req.body.collectionId);
+  console.log(document.getElementById(req.body.collectionId).innerHTML);
 });
 
 
@@ -93,7 +93,6 @@ router.post("/:collection/delete", ensureAuthenticated, function(req, res){
   const collection = req.params.collection
   const deleteItem = req.body.deleteItem;
   const username = req.user.username;
-  console.log(deleteItem);
   User.findOneAndUpdate({"group.items._id": deleteItem}, { $pull: {"group.$.items": {_id:deleteItem}}},function(err, foundUser){
     if (err) {
       console.log(err);

@@ -1,11 +1,18 @@
 <%- include('../partials/header') %>
-    <h1> Vist other bookmarks </h1>
+  <div class="container-fluid mt-4">
+    <h1> Vist other user's bookmarks! </h1>
+  </div>
 
 
+  <div class="container-fluid mt-4">
     <ul>
-      <li>Find all users </li>
+      <% usernames.forEach(function(username){ %>
+        <li>
+          <a href=<%="/dashboard/" + username %>><%= username %></a>
+        </li>
+      <% }) %>
     </ul>
-
+  </div>
 
 
     <%- include('../partials/footer') %>

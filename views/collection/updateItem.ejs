@@ -1,0 +1,56 @@
+<%- include('../partials/header') %>
+
+<div class="container-fluid mt-5">
+  <div class="container-fluid mt-4">
+    <div class="row mb-4">
+      <div class="col-8 col-sm-6">
+        <h1>Add a Bookmark</h1>
+      </div>
+      <div class="col-8 col-sm-2">
+        <button onclick="goBack()" class="btn btn-sm btn-outline-secondary">Go Back</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Previous Bookmark</h3>
+            <h5 class="card-title"><%= itemName %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><a href=<%= itemUrl %>><%= itemUrl %></a></h6>
+            <p class="card-text"><%= itemNotes %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Updated Bookmark</h3>
+          <form action=<%="/collection/" + requestedCollection + "/" + requestedItem +"/update"%> method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" name="name">
+            </div>
+            <div class="form-group">
+              <label for="url">URL</label>
+              <input type="text" class="form-control" name="url">
+            </div>
+            <div class="form-group">
+              <label for="notes">Notes</label>
+              <textarea class="form-control" name="notes" rows="4" cols="50">
+              </textarea>
+            </div>
+            <button type="submit" class="btn btn-dark">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

@@ -93,7 +93,7 @@ router.get("/logout", function(req, res){
 // @access Public
 router.post("/register", function(req, res) {
   if (!pattern.test(req.body.name)){
-    return res.render("register", {message: "Username must be only lowercase letters and numbers with no spaces."})
+    return res.render("auth/register", {message: "Username must be only lowercase letters and numbers with no spaces."})
   }
   User.findOne({ email: req.body.email }).then(user => {
       if (user) {

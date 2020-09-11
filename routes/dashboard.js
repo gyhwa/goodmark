@@ -37,7 +37,6 @@ router.get("/", function(req,res) {
     }
     else {
       const result = users.map(user => user.username);
-      console.log(result);
       res.render("dashboard/dashboard", {usernames: result});
     }
   });

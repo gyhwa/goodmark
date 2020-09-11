@@ -1,0 +1,63 @@
+<%- include('../partials/header') %>
+
+<div class="container-fluid mt-5">
+  <div class="container-fluid mt-4">
+    <div class="row mb-4">
+      <div class="col-8 col-sm-6">
+        <h1>Account</h1>
+      </div>
+      <div class="col-8 col-sm-2">
+        <form action=" <%= "dashboard/" + username %>" method="get">
+          <button type="submit" class="btn btn-sm btn-outline-secondary">Go Back</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-body">
+
+
+            <form action="/account/password" method="POST">
+              <div class="form-group">
+                <label for="password">Current Password</label>
+                <input type="password" class="form-control" name="password">
+              </div>
+              <div class="form-group">
+                <label for="newpassword">New Password</label>
+                <input type="password" class="form-control" name="newPassword">
+              </div>
+              <p>
+                 <%= message %>
+                </p>
+              <button type="submit" class="btn btn-dark">Change Password</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-body">
+            <form action="/account/delete" method="POST">
+              <div class="form-group">
+                <label for="password">Current Password</label>
+                <input type="password" class="form-control" name="password">
+              </div>
+              <button type="submit" class="btn btn-danger">Delete Account</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

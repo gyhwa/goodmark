@@ -159,7 +159,8 @@ router.post("/:collection/:item/update", ensureAuthenticated, function(req,res) 
   const newName = req.body.name;
   const newURL = req.body.url;
   const newNotes = req.body.notes;
-  const update = {name: newName, url: newURL, notes: newNotes};
+  const newDate = Date.now();
+  const update = {name: newName, url: newURL, notes: newNotes,  date: newDate};
   const itemID = req.params.item;
   const username = _.lowerCase(req.user.username);
 

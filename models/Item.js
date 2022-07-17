@@ -13,7 +13,11 @@ const ItemSchema = new Schema({
   notes: {
     type: String,
     required: true
-  }
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  },
 });
 
 //const Item = mongoose.model("Item", ItemSchema);

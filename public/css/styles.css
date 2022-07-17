@@ -1,4 +1,24 @@
+html {
+height: 100%;
+}
+
+body {
+height: 100%;
+}
+
 .inline {
   display:inline-block;
   float: left;
+}
+
+.hero-pad {
+  padding: 7em;
+}
+
+.small-marg {
+  margin-bottom: 2em;
+}
+
+.fill-height{
+    height:100%;
 }

@@ -15,7 +15,7 @@ router.get("/", ensureAuthenticated, function(req,res) {
 });
 
 router.get("/delete", ensureAuthenticated, function(req,res) {
-  res.render("auth/register");
+  res.render("auth/signup");
 });
 
 
@@ -27,7 +27,7 @@ router.post("/delete", ensureAuthenticated, function(req, res){
       console.log(err);
     } else {
       req.logout();
-      res.redirect("/register")
+      res.redirect("/signup")
     }
   });
 });

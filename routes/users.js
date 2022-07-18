@@ -68,8 +68,8 @@ router.get("/about", function(req,res) {
   res.render("about")
 });
 
-router.get("/register", function(req,res){
-  res.render("auth/register", {message:""})
+router.get("/signup", function(req,res){
+  res.render("auth/signup", {message:""})
 });
 
 
@@ -87,22 +87,22 @@ router.get("/logout", function(req, res){
   req.logout();
   res.redirect("/");
 });
-//////////////////////////////////// REGISTER ///////////////////////////////////
-// @route POST api/users/register
-// @desc Register user
+////////////////////////////////////  ///////////////////////////////////
+// @route POST api/users/
+// @desc  user
 // @access Public
-router.post("/register", function(req, res) {
+router.post("/signup", function(req, res) {
   if (!pattern.test(req.body.name)){
-    return res.render("auth/register", {message: "Username must be only lowercase letters and numbers with no spaces."})
+    return res.render("auth/signup", {message: "Username must be only lowercase letters and numbers with no spaces."})
   }
   User.findOne({ email: req.body.email }).then(user => {
       if (user) {
-        res.render("auth/register", {message: "Email already exists"})
+        res.render("auth/signup", {message: "Email already exists"})
         //return res.status(400).json({ email: "Email already exists" });
       } else {
         User.findOne({ username: req.body.name }).then(user =>{
           if (user) {
-            res.render("auth/register", {message: "Username already exists"})
+            res.render("auth/signup", {message: "Username already exists"})
           } else {
             // Successful registration
             const newUser = new User({

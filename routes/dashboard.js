@@ -18,9 +18,13 @@ router.get("/:username", ensureAuthenticated, function(req,res){
     User.findOne({username: requestedUser}, function(err, foundUser){
       if (err) {
         console.log(err)
-      } else {
+        res.status(404).redirect("/404")
+      } else if (foundUser) {
         const collections = foundUser.group;
         res.render("dashboard/dashboardUser", {user: requestedUser, collections: collections, isUser: false});
+      } else {
+        console.log(err)
+        res.status(404).redirect("/404")
       }
     });
   }
@@ -33,17 +37,22 @@ router.get("/:username", ensureAuthenticated, function(req,res){
 router.get("/", function(req,res) {
   User.find({}, function(err, users){
     if (err) {
+      console.log("imworking")
       console.log(err);
+      res.status(404).redirect("/404")
     }
-    else {
+    else if (users) {
       const result = users.map(user => user.username);
       res.render("dashboard/dashboard", {usernames: result});
+    }
+    else {
+      console.log(err)
+      res.status(404).redirect("/404")
     }
   });
 });
 
 ////////////////
-
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated())

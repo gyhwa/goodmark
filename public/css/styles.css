@@ -6,6 +6,12 @@ body {
 height: 100%;
 }
 
+/* homepage */
+.fill-height{
+    height:100%;
+}
+
+
 .inline {
   display:inline-block;
   float: left;
@@ -14,11 +20,17 @@ height: 100%;
 .hero-pad {
   padding: 7em;
 }
-
+/* dashboard */
 .small-marg {
   margin-bottom: 2em;
 }
+.small-marg-side {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
 
-.fill-height{
-    height:100%;
+.date-font {
+  font-size: 0.8em;
+  font-style: italic;
+  color:#D3D3D3;
 }
